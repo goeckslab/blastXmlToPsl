@@ -8,4 +8,4 @@ This tool is configured only to use this command, at the moment:
 
 Please use another tool or contact me
 
-(Contains pslToBed binary for [linux.x86_64](http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/))
+(Contains blastXmlToPsl binary for [linux.x86_64](http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/))
