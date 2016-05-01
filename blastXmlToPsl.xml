@@ -1,0 +1,50 @@
+<tool id="blastXmlToPsl" name="blastXmlToPsl" version="0.1.0">
+    <requirements>
+    </requirements>
+    <stdio>
+        <exit_code range="1:" />
+    </stdio>
+    <command><![CDATA[
+        $__tool_directory__/blastXmlToPsl -convertToNucCoords $input $output
+    ]]></command>
+    <inputs>
+        <param type="data" name="input" format="xml" />
+    </inputs>
+    <outputs>
+        <data format="psl" name="output" />
+    </outputs>
+    <help><![CDATA[
+blastXmlToPsl - convert blast XML output to PSLs
+usage:
+   blastXmlToPsl [options] blastXml psl
+
+options:
+  -scores=file - Write score information to this file.  Format is:
+       strands qName qStart qEnd tName tStart tEnd bitscore eVal qDef tDef
+  -verbose=n - n >= 3 prints each line of file after parsing.
+               n >= 4 dumps the result of each query
+  -eVal=n n is e-value threshold to filter results. Format can be either
+          an integer, double or 1e-10. Default is no filter.
+  -pslx - create PSLX output (includes sequences for blocks)
+  -convertToNucCoords - convert protein to nucleic alignments to nucleic
+   to nucleic coordinates
+  -qName=src - define element used to obtain the qName.  The following
+   values are support:
+     o query-ID - use contents of the <Iteration_query-ID> element if it
+       exists, otherwise use <BlastOutput_query-ID>
+     o query-def0 - use the first white-space separated word of the
+       <Iteration_query-def> element if it exists, otherwise the first word
+       of <BlastOutput_query-def>.
+   Default is query-def0.
+  -tName=src - define element used to obtain the tName.  The following
+   values are support:
+     o Hit_id - use contents of the <Hit-id> element.
+     o Hit_def0 - use the first white-space separated word of the
+       <Hit_def> element.
+     o Hit_accession - contents of the <Hit_accession> element.
+   Default is Hit-def0.
+  -forcePsiBlast - treat as output of PSI-BLAST. blast-2.2.16 and maybe
+   others indentify psiblast as blastp.
+Output only results of last round from PSI BLAST
+    ]]></help>
+</tool>
