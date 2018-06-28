@@ -1,18 +1,35 @@
-<tool id="blastXmlToPsl" name="blastXmlToPsl" version="0.1.0">
+<tool id="blastXmlToPsl" name="blastXmlToPsl" version="1.1">
     <requirements>
     </requirements>
     <stdio>
         <exit_code range="1:" />
     </stdio>
     <command><![CDATA[
-        $__tool_directory__/blastXmlToPsl -convertToNucCoords $input $output
+        $__tool_directory__/blastXmlToPsl $input $output
+        #if $convertToNucCoords == "true"
+          -convertToNucCoords
+        #end if
     ]]></command>
     <inputs>
         <param type="data" name="input" format="xml" />
+        <param type="boolean" name="convertToNucCoords" checked="true" label="-convertToNucCoords" help="Only support for TBLASTN restuls. Convert protein to nucleic alignments to nucleic
+   to nucleic coordinates"/>
     </inputs>
     <outputs>
         <data format="psl" name="output" />
     </outputs>
+    <tests>
+        <test>
+            <param name="input" value="tblastn_Dbia3_ci.xml" />
+            <param name="convertToNucCoords" value="true" />
+            <output name="output" value="tblastn_Dbia3_ci.psl" />
+        </test>
+        <test>
+            <param name="input" value="blastn_mRNA_seq.xml" />
+            <param name="convertToNucCoords" value="false" />
+            <output name="output" value="blastn_mRNA_seq.psl" />
+        </test>
+    </tests>
     <help><![CDATA[
 blastXmlToPsl - convert blast XML output to PSLs
 
@@ -58,4 +75,20 @@ options:
 
 Output only results of last round from PSI BLAST
     ]]></help>
+    <citations>
+        <citation type="bibtex">
+            @article{Kent01062002,
+            author = {Kent, W. James and Sugnet, Charles W. and Furey, Terrence S. and Roskin, Krishna M. and Pringle, Tom H. and Zahler, Alan M. and Haussler,  and David},
+            title = {The Human Genome Browser at UCSC},
+            volume = {12},
+            number = {6},
+            pages = {996-1006},
+            year = {2002},
+            doi = {10.1101/gr.229102},
+            URL = {http://genome.cshlp.org/content/12/6/996.abstract},
+            eprint = {http://genome.cshlp.org/content/12/6/996.full.pdf+html},
+            journal = {Genome Research}
+            }
+        </citation>
+    </citations>
 </tool>

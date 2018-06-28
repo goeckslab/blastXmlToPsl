@@ -1,4 +1,4 @@
-categories: []
+categories: [Convert Formats]
 description: convert blast XML output to PSLs
 name: blastxmltopsl
-owner: remimarenco
+owner: yating-l
