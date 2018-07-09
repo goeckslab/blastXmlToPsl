@@ -1,4 +1,4 @@
-<tool id="blastXmlToPsl" name="blastXmlToPsl" version="1.1">
+<tool id="blastXmlToPsl" name="blastXmlToPsl" version="1.2">
     <requirements>
     </requirements>
     <stdio>
